@@ -1,15 +1,11 @@
-
-const { ApolloServer, gql } = require('apollo-server-express')
+const { ApolloServer } = require('apollo-server-express')
 const express = require('express')
 const mongoose= require('mongoose')
-const dotenv = require('dotenv');
-dotenv.config();
 
+
+const { port, db_username, db_password, db_name } = require('./config')
 const resolvers  = require('./src/resolvers')
-const typeDefs  = require('./src/typeDefs')
-
-const username = 'cop-client-system'
-const password = 'mECvzOSmw9ohz5T2';
+const typeDefs  = require('./src/typeDefs');
 
 (async () => {
     const app = express();
@@ -21,9 +17,9 @@ const password = 'mECvzOSmw9ohz5T2';
     
     server.applyMiddleware({ app })
     
-    await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-avv4c.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`, {useNewUrlParser: true})
+    await mongoose.connect(`mongodb+srv://${db_username}:${db_password}@cluster0-avv4c.mongodb.net/${db_name}?retryWrites=true&w=majority`, {useNewUrlParser: true})
     
-    app.listen({ port: 3000 }, () => 
-        console.log(`Server ready at http://localhost:3000${server.graphqlPath}`)
+    app.listen({ port }, () => 
+        console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`)
     )
 })()
