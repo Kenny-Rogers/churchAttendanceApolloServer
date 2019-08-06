@@ -3,7 +3,9 @@ const Cat = require('./models/Cat')
 const resolvers = {
     Query: {
         hello: () => 'hello',
-        cats: () => Cat.find()
+        cats: () => Cat.find(),
+        members: () => 'all members',
+        addMember:(_, {id}) => 'member'
     },
     
     Mutation: {
