@@ -1,5 +1,17 @@
 const mongoose = require('mongoose')
 
-const Cat = mongoose.model('Cat', { name: String })
+const Member = mongoose.model('Member', { 
+    name: String,
+    gender: String,
+    dob: Date,
+    date_baptized: Date,
+    baptized_by: String,
+    date_transferred_into_assembly: Date,
+    date_transferred_out_of_assembly: Date,
+    hometown: String,
+    marital_status: String,
+    occupation: String,
+    remarks: String
+})
 
-module.exports = Cat
+module.exports = Member
