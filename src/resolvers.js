@@ -1,27 +1,22 @@
-const Cat = require('./models/Cat')
 const Member = require('./models/Member')
 
 const resolvers = {
+    //requests to read info from server
     Query: {
-        hello: () => 'hello',
-        cats: () => Cat.find(),
-        members: () => Member.find()
+        members: () => Member.find(), //get all members information
+        memberById: (_, {id}) => Member.findById(id)
     },
     
+    //requests to create,update or delete an object  
     Mutation: {
-        createCat: async (_, {name}) => {
-            const kitty = new Cat({name})
-            await kitty.save()
-            return kitty
-        },
+        //create a new member
         addMember: async (_, { name,gender,dob,date_baptized,baptized_by, date_transferred_into_assembly,
                         date_transferred_out_of_assembly, hometown, marital_status, occupation,
-                        remarks}) => {
+                        remarks }) => {
             const member = new Member({
                 name, gender, dob, date_baptized, baptized_by, date_transferred_into_assembly,
                 date_transferred_out_of_assembly, hometown, marital_status, occupation,
-                remarks
-            })
+                remarks })
             await member.save()
             return member
         }
