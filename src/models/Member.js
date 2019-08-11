@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const Member = mongoose.model('Member', { 
-    name: String,
+    full_name: String,
     gender: String,
     dob: Date,
     date_baptized: Date,
@@ -11,7 +11,9 @@ const Member = mongoose.model('Member', {
     hometown: String,
     marital_status: String,
     occupation: String,
-    remarks: String
+    remarks: String,
+    home_cell: String,
+    contact: String
 })
 
 module.exports = Member
