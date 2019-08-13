@@ -23,7 +23,7 @@ const typeDefs  = require('./src/typeDefs');
     server.applyMiddleware({ app })
     
     //ensuring mongoDb connection is secured
-    await mongoose.connect(`mongodb+srv://${db_username}:${db_password}@cluster0-avv4c.mongodb.net/${db_name}?retryWrites=true&w=majority`, {useNewUrlParser: true})
+    await mongoose.connect(`mongodb+srv://${db_username}:${db_password}@cluster0-avv4c.mongodb.net/${db_name}?retryWrites=true&w=majority`, {useNewUrlParser: true, useCreateIndex: true})
     
     //running the server
     app.listen({ port }, () => 

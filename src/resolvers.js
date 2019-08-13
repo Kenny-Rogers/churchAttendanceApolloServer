@@ -1,9 +1,12 @@
 const Member = require('./models/Member')
+const Attendance = require('./models/Attendance')
+
 
 const resolvers = {
     //requests to read info from server
     Query: {
-        members: () => Member.find(), //get all members information
+        members: async () => await Member.find(), //get all members information
+        // attendances: () => Attendance.find(),
         memberById: (_, {id}) => Member.findById(id)
     },
     
@@ -19,7 +22,17 @@ const resolvers = {
                 remarks, home_cell,contact })
             await member.save()
             return member
-        }
+        },
+
+        addAttendance: async (_, {date, members}) =>{
+            let attendance = await Attendance.findOne({date: date})
+            if (attendance) 
+                attendance.members.push(members) 
+            else 
+                attendance = new Attendance({date, members}) 
+            await attendance.save()
+            return attendance
+        }    
     }
 }
 
