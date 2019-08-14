@@ -8,7 +8,7 @@ const { port, db_username, db_password, db_name } = require('./config')
 const resolvers  = require('./src/resolvers')
 const typeDefs  = require('./src/typeDefs');
 
-//IIFE to start server
+//IIFE to start web server
 (async () => {
     //create Express app server
     const app = express();
