@@ -4,8 +4,8 @@ const express = require('express')
 const mongoose= require('mongoose')
 
 //including other files 
-const { port, db_username, db_password, db_name } = require('./config')
 const resolvers  = require('./src/resolvers')
+const { port, db_username, db_password, db_name } = require('./config')
 const typeDefs  = require('./src/typeDefs');
 
 //IIFE to start web server
